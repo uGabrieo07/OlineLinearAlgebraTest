@@ -30,11 +30,9 @@ jobs:
           jupyter lite build --contents content --output-dir dist
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v2  # Updated to v2
         with:
-          name: jupyterlite-site
           path: ./dist
-          overwrite: true
 
   deploy:
     needs: build
@@ -49,12 +47,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: jupyterlite-site
-          path: ./dist
-
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2  # Updated to v2 (if available)
